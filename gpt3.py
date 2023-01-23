@@ -1,4 +1,4 @@
-#myChatGPT version_0.1
+#myChatGPT version_0.1.1
 import openai
 
 
