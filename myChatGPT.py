@@ -1,18 +1,23 @@
 #myChatGPT version_0.1.1
 import openai
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def askGPT(text):
-  openai.api_key = 'OPEN_AI_KEY'
+  openai.api_key = os.getenv('OPENAI_API_KEY')
   response = openai.Completion.create(
-      engine = "text-davinci-003",
-      prompt = text,
-      temperature = 0.6,
-      max_tokens = 150,
-  )
+    engine = "text-davinci-003",
+    prompt = text,
+    temperature = 0.0,
+    max_tokens = 1000,
+    frequency_penalty=0
+    )
   return print(response.choices[0].text)
 
+
 def main():
+  
   while True:
     print('GPT: Ask me a question\n')
     myQn = input()
