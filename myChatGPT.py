@@ -7,14 +7,13 @@ load_dotenv()
 def askGPT(text):
   openai.api_key = os.getenv('OPENAI_API_KEY')
   response = openai.Completion.create(
-    engine = "text-davinci-003",
-    prompt = text,
-    temperature = 0.0,
-    max_tokens = 1000,
-    frequency_penalty=0
+    model= "gpt-3.5-turbo",
+     messages= 'role: user, content: Say this is a test!',
+     temperature= 0.7
     )
   return print(response.choices[0].text)
-
+  return print(response.choices[1].text)
+  return print(response.choices[2].text)
 
 def main():
   
