@@ -1,25 +1,32 @@
-#myChatGPT version_0.1.2
+#myChatGPT version_0.2.0
+import os
 import openai
 import os
 from dotenv import load_dotenv
 load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+model_id = 'gpt-3.5-turbo'
 
-def askGPT(text):
-  openai.api_key = os.getenv('OPENAI_API_KEY')
-  response = openai.Completion.create(
-    model= "gpt-3.5-turbo",
-     messages= 'role: user, content: Say this is a test!',
-     temperature= 0.7
+def ChatGPT_conversation(conversation):
+    response = openai.ChatCompletion.create(
+        model=model_id,
+        messages=conversation
     )
-  return print(response.choices[0].text)
-  return print(response.choices[1].text)
-  return print(response.choices[2].text)
+    # api_usage = response['usage']
+    # print('Total token consumed: {0}'.format(api_usage['total_tokens']))
+    # stop means complete
+    # print(response['choices'][0].finish_reason)
+    # print(response['choices'][0].index)
+    conversation.append({'role': response.choices[0].message.role, 'content': response.choices[0].message.content})
+    return conversation
 
-def main():
-  
-  while True:
-    print('GPT: Ask me a question\n')
-    myQn = input()
-    askGPT(myQn)
-    print('\n')
-main()
+conversation = []
+conversation.append({'role': 'system', 'content': 'How may I help you?'})
+conversation = ChatGPT_conversation(conversation)
+print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
+
+while True:
+    prompt = input('User:')
+    conversation.append({'role': 'user', 'content': prompt})
+    conversation = ChatGPT_conversation(conversation)
+    print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
