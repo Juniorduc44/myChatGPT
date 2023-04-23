@@ -1,4 +1,4 @@
-#myChatGPT version_0.2.0
+#myChatGPT version_0.2.1
 import os
 import openai
 import os
@@ -21,7 +21,7 @@ def ChatGPT_conversation(conversation):
     return conversation
 
 conversation = []
-conversation.append({'role': 'system', 'content': 'How may I help you?'})
+conversation.append({'role': 'user', 'content': 'How may I help you?'})
 conversation = ChatGPT_conversation(conversation)
 print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
 
