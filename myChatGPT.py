@@ -1,4 +1,4 @@
-#myChatGPT version_0.2.2
+#myChatGPT version_0.2.3
 import os
 import openai
 import os
@@ -40,10 +40,19 @@ if aiPersonality == 1:
 else:
     conversation.append({'role': 'user', 'content': "Hi, How are you?"})
 conversation = ChatGPT_conversation(conversation)
-print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
+print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()),"\n")
 
-while True:
-    prompt = input('User: \n')
-    conversation.append({'role': 'user', 'content': prompt})
-    conversation = ChatGPT_conversation(conversation)
-    print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
+A = True
+while A == True:
+    prompt = input('User: ') # type "quit" to end conversation
+    print("")
+    try:        
+        if prompt == "quit":
+            print("quitting")
+            A = False
+        else:
+            conversation.append({'role': 'user', 'content': prompt})
+            conversation = ChatGPT_conversation(conversation)
+            print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()),"\n")            
+    except:
+        pass
