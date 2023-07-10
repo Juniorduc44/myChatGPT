@@ -1,5 +1,5 @@
-# myChatGUI v0.0.1
-import tkinter as tk
+# myChatGUI v0.1.0
+import customtkinter as tk
 from customtkinter import CTkButton, CTkTextbox
 from tkinter import messagebox, filedialog
 import os
@@ -63,6 +63,6 @@ class ChatApp:
                 output_file.write(text)
 
 if __name__ == "__main__":
-    root = tk.Tk()
+    root = tk.CTk()
     app = ChatApp(root)
     root.mainloop()
