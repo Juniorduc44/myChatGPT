@@ -1,4 +1,4 @@
-# myChatGUI v0.1.0
+# myChatGUI v0.1.1
 import customtkinter as tk
 from customtkinter import CTkButton, CTkTextbox
 from tkinter import messagebox, filedialog
@@ -21,11 +21,11 @@ class ChatApp:
         self.root.title("ChatGPT GUI")
 
         # Text display area
-        self.display_area = CTkTextbox(self.root, width=600, height=400)
+        self.display_area = CTkTextbox(self.root, width=800, height=400)
         self.display_area.pack(padx=10, pady=10)
 
         # Text input area
-        self.input_area = CTkTextbox(self.root, width=500, height=50)
+        self.input_area = CTkTextbox(self.root, width=800, height=50)
         self.input_area.pack(padx=10, pady=10)
 
         # Send button
